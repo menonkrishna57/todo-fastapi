@@ -1,13 +1,13 @@
-from asyncio import tasks
 from fastapi import FastAPI
 from pydantic import BaseModel
+from typing import Optional
 
 app= FastAPI()
 
 class task_model(BaseModel):
     id: int
     name: str
-    description: str
+    description: Optional[str]= None
 
 tasks = []
 
@@ -24,3 +24,7 @@ def new_task(task:task_model):
 @app.get("/tasks")
 def get_tasks():
     return {"tasks": tasks}
+#TODO: Implement a way to delete tasks
+#TODO: Implement a way to update tasks
+#ToDO: Implement a way to mark tasks as completed
+#TODO: Implement a way to save tasks in a database
